@@ -6,6 +6,14 @@ Path::Tiny::Archive::Tar - Tar/untar add-on for file path utility
 
 version 0.001
 
+# SYNOPSIS
+
+    use Path::Tiny
+    use Path::Tiny::Archive::Tar qw( :const );
+
+    path("foo/bar.txt")->tar("foo/bar.tgz", COMPRESSION_GZIP);
+    path("foo/bar.zip")->untar("baz");
+
 # DESCRIPTION
 
 This module provides two additional methods for [Path::Tiny](https://metacpan.org/pod/Path::Tiny) for working with
@@ -20,6 +28,26 @@ tar archives.
 
 Creates a tar archive and appends a file or directory tree to it. Returns the
 path to the archive or undef.
+
+You can choose different compression types and levels.
+
+    path("/tmp/foo")->zip("/tmp/foo.tgz", COMPRESSION_GZIP);
+
+The types and levels given can be:
+
+- `COMPRESSION_NONE`: No compression. This is the type that will be used
+if not specified.
+- `COMPRESSION_GZIP`: Compress using `gzip`.
+    - `0` to `9`: This is `gzip` compression levels. 1 gives the best
+    speed and worst compression, and 9 gives the best compression and worst speed.
+    0 is no compression.
+    - `COMPRESSION_GZIP_NONE`: This is a synonym for `gzip` level 0.
+    - `COMPRESSION_GZIP_FASTEST`: This is a synonym for `gzip` level 1.
+    - `COMPRESSION_GZIP_BEST`: This is a synonym for `gzip` level 9.
+    - `COMPRESSION_GZIP_DEFAULT`: This gives a good compromise between speed
+    and compression for `gzip`, and is currently equivalent to 6 (this is in the
+    zlib code). This is a synonym for `COMPRESSION_GZIP`.
+- `COMPRESSION_BZIP2`: Compress using `bzip2`.
 
 ## untar
 

@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 use Archive::Tar qw( COMPRESS_GZIP COMPRESS_BZIP );
-use Compress::Raw::Zlib qw( :level );
+use Compress::Raw::Zlib ();
 use Path::Tiny qw( path );
 
 use namespace::clean;
@@ -14,7 +14,7 @@ use namespace::clean;
 use Exporter qw( import );
 
 
-our $VERSION = '0.001';
+our $VERSION = '0.002';
 
 our %EXPORT_TAGS = ( const =>[qw(
     COMPRESSION_NONE
@@ -35,10 +35,10 @@ BEGIN {
 use constant {
     COMPRESSION_NONE         => undef,
     COMPRESSION_GZIP         => COMPRESS_GZIP,
-    COMPRESSION_GZIP_DEFAULT => Z_DEFAULT_COMPRESSION,
-    COMPRESSION_GZIP_NONE    => Z_NO_COMPRESSION,
-    COMPRESSION_GZIP_FASTEST => Z_BEST_SPEED,
-    COMPRESSION_GZIP_BEST    => Z_BEST_COMPRESSION,
+    COMPRESSION_GZIP_DEFAULT => Compress::Raw::Zlib::Z_DEFAULT_COMPRESSION,
+    COMPRESSION_GZIP_NONE    => Compress::Raw::Zlib::Z_NO_COMPRESSION,
+    COMPRESSION_GZIP_FASTEST => Compress::Raw::Zlib::Z_BEST_SPEED,
+    COMPRESSION_GZIP_BEST    => Compress::Raw::Zlib::Z_BEST_COMPRESSION,
     COMPRESSION_BZIP2        => COMPRESS_BZIP,
 };
 

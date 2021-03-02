@@ -4,7 +4,7 @@ Path::Tiny::Archive::Tar - Tar/untar add-on for file path utility
 
 # VERSION
 
-version 0.001
+version 0.002
 
 # SYNOPSIS
 

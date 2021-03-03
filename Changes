@@ -1,6 +1,6 @@
 Revision history for Path-Tiny-Archive-Tar
 
-0.002
+0.002    2021-03-03
 
     - Fixed using old versions of Compress::Raw::Zlib.
 

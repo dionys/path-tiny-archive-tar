@@ -34,9 +34,13 @@ BEGIN {
 
 use constant {
     COMPRESSION_NONE         => undef,
-    COMPRESSION_GZIP         => COMPRESS_GZIP,
-    COMPRESSION_GZIP_DEFAULT => Compress::Raw::Zlib::Z_DEFAULT_COMPRESSION,
-    COMPRESSION_GZIP_NONE    => Compress::Raw::Zlib::Z_NO_COMPRESSION,
+    # Hack for Archive::Tar: true so don't use default compression and pass
+    # this level to IO::Zlib. And hack for Compress::Zlib: not digit so use
+    # default compression (letters may specify other compression modes).
+    COMPRESSION_GZIP         => '-',
+    COMPRESSION_GZIP_DEFAULT => '-',
+    # Hack for Archive::Tar: zero but true so pass 0 level to IO::Zlib.
+    COMPRESSION_GZIP_NONE    => '00',
     COMPRESSION_GZIP_FASTEST => Compress::Raw::Zlib::Z_BEST_SPEED,
     COMPRESSION_GZIP_BEST    => Compress::Raw::Zlib::Z_BEST_COMPRESSION,
     COMPRESSION_BZIP2        => COMPRESS_BZIP,
@@ -65,11 +69,11 @@ if not specified.
 
 =over 8
 
-=item * C<0> to C<9>: This is C<gzip> compression levels. 1 gives the best
+=item * C<1> to C<9>: This is C<gzip> compression levels. 1 gives the best
 speed and worst compression, and 9 gives the best compression and worst speed.
-0 is no compression.
 
-=item * C<COMPRESSION_GZIP_NONE>: This is a synonym for C<gzip> level 0.
+=item * C<COMPRESSION_GZIP_NONE>: This is a synonym for C<gzip> level 0. No
+compression.
 
 =item * C<COMPRESSION_GZIP_FASTEST>: This is a synonym for C<gzip> level 1.
 

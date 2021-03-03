@@ -4,6 +4,8 @@ Revision history for Path-Tiny-Archive-Tar
 
     - Fixed using old versions of Compress::Raw::Zlib.
 
+    - Fixed compression level constants for gzip.
+
 0.001    2021-03-01
 
     - First release.

@@ -38,10 +38,10 @@ The types and levels given can be:
 - `COMPRESSION_NONE`: No compression. This is the type that will be used
 if not specified.
 - `COMPRESSION_GZIP`: Compress using `gzip`.
-    - `0` to `9`: This is `gzip` compression levels. 1 gives the best
+    - `1` to `9`: This is `gzip` compression levels. 1 gives the best
     speed and worst compression, and 9 gives the best compression and worst speed.
-    0 is no compression.
-    - `COMPRESSION_GZIP_NONE`: This is a synonym for `gzip` level 0.
+    - `COMPRESSION_GZIP_NONE`: This is a synonym for `gzip` level 0. No
+    compression.
     - `COMPRESSION_GZIP_FASTEST`: This is a synonym for `gzip` level 1.
     - `COMPRESSION_GZIP_BEST`: This is a synonym for `gzip` level 9.
     - `COMPRESSION_GZIP_DEFAULT`: This gives a good compromise between speed

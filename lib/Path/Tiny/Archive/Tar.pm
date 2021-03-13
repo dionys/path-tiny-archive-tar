@@ -5,16 +5,13 @@ package Path::Tiny::Archive::Tar;
 use strict;
 use warnings;
 
-use Archive::Tar qw( COMPRESS_GZIP COMPRESS_BZIP );
+use Archive::Tar ();
 use Compress::Raw::Zlib ();
+use Exporter qw( import );
 use Path::Tiny qw( path );
 
-use namespace::clean;
 
-use Exporter qw( import );
-
-
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 our %EXPORT_TAGS = ( const =>[qw(
     COMPRESSION_NONE
@@ -43,7 +40,7 @@ use constant {
     COMPRESSION_GZIP_NONE    => '00',
     COMPRESSION_GZIP_FASTEST => Compress::Raw::Zlib::Z_BEST_SPEED,
     COMPRESSION_GZIP_BEST    => Compress::Raw::Zlib::Z_BEST_COMPRESSION,
-    COMPRESSION_BZIP2        => COMPRESS_BZIP,
+    COMPRESSION_BZIP2        => Archive::Tar::COMPRESS_BZIP,
 };
 
 =method tar

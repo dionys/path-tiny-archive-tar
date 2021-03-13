@@ -46,7 +46,7 @@ use constant {
 =method tar
 
     path("/tmp/foo.txt")->tar("/tmp/foo.tar");
-    path("/tmp/foo")->tar("/tmp/foo.tar");
+    path("/tmp/foo")->tar("/tmp/foo.tar.gz", COMPRESSION_GZIP);
 
 Creates a tar archive and appends a file or directory tree to it. Returns the
 path to the archive or undef.
@@ -125,6 +125,30 @@ sub tar {
     $tar->write($dest->stringify(), defined $level ? $level : ()) or return;
 
     return $dest;
+}
+
+=method tgz
+
+    path("/tmp/foo.txt")->tgz("/tmp/foo.tar.gz");
+
+Method C<tgz> is synonym for C<tar> with C<COMPRESSION_GZIP> type.
+
+=cut
+
+sub tgz {
+    return $_[0]->tar($_[1], COMPRESSION_GZIP);
+}
+
+=method tbz2
+
+    path("/tmp/foo.txt")->tbz2("/tmp/foo.tar.bzip2");
+
+Method C<tbz2> is synonym for C<tar> with C<COMPRESSION_BZIP2> type.
+
+=cut
+
+sub tbz2 {
+    return $_[0]->tar($_[1], COMPRESSION_BZIP2);
 }
 
 =method untar
